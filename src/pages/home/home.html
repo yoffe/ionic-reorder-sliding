@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar color="secondary">
+      <ion-title>
+        <!--img src = "assets/images/logo.png" /-->
+        רשימת הקניות שלי
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addGrouplist()"><ion-icon name="add-circle"></ion-icon></button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+      <ion-item-sliding *ngFor="let group of grouplist">
+
+        <button ion-item text-right (click)="viewGrouplist(group)">
+            <h1>{{group.title}}</h1>
+            <ion-badge item-right>{{group.items.length}} פריטים</ion-badge>
+            <ion-badge [color]="countMe(group) > 0 ? 'danger' : 'secondary'" item-right> {{ countMe(group) }} חסרים</ion-badge>
+        </button>
+
+        <ion-item-options side="left">
+          <button ion-button color="light" (click)="renameGrouplist(group)"><ion-icon name="build"></ion-icon> עריכה</button>
+        </ion-item-options>
+
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeItem(group)"><ion-icon name="trash"></ion-icon> מחיקה</button>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

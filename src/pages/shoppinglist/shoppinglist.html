@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      {{shoppinglist.title}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="uncheckItems()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+
+
+      <ion-item>
+        <ion-label>הסתרת מוצרים מסומנים</ion-label>
+        <ion-toggle [(ngModel)]="showHideItems"></ion-toggle>
+      </ion-item>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list [reorder]="orderItems" (ionItemReorder)="reorderTasks($event)">
+
+    <ion-item-sliding *ngFor="let item of shoppinglist.items">
+
+      <ion-item text-right [hidden]="showHideItems && item.checked">
+        <ion-checkbox no-margin [checked]="item.checked" (click)="toggleItem(item)"></ion-checkbox>
+        <ion-label text-right>
+          <h2>{{item.title}}</h2>
+        </ion-label>
+        <ion-badge item-right>{{item.qty}}</ion-badge>
+      </ion-item>
+
+      <ion-item-options side="left">
+        <button ion-button color="light" (click)="renameItem(item)">
+          <ion-icon name="build"></ion-icon>עריכה</button>
+      </ion-item-options>
+
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeItem(item)">
+          <ion-icon name="trash"></ion-icon>מחיקה</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="dark">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <button danger ion-fab (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
+      <button ion-fab (click)="toggleShowHide()"><ion-icon name="checkbox"></ion-icon></button>
+      <button ion-fab (click)="toggleOrder()"><ion-icon name="reorder"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>
