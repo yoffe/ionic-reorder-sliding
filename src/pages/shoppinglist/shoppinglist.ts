@@ -17,10 +17,10 @@ export class ShoppinglistPage {
     this.shoppinglist = this.navParams.get('grouplist');
   }
 
-  /*reorderTasks(indexes) {
+  reorderTasks(indexes) {
       this.shoppinglist.items = reorderArray(this.shoppinglist.items, indexes);
       console.log(indexes);
-  }*/
+  }
 
   /*reorderItems(indexes) {
      let element = this.shoppinglist.items[indexes.from];
